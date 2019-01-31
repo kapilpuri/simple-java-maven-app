@@ -7,7 +7,7 @@ pipeline {
   
 
   tools {
-    maven 'maven-3.6.0'
+     maven 'maven-3.6.0'
 
     jdk 'java1.8.0'
 
@@ -42,7 +42,7 @@ pipeline {
                   stage ('clone')  {
                   
                     steps {
-                        git branch: 'master', url: ""
+                        git branch: 'master', url: "https://github.com/kapilpuri/simple-java-maven-app.git"
                         
                         }
                        }
