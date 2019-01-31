@@ -23,7 +23,6 @@ pipeline {
         stage('BUILD') {
 
           steps {
-
               sh "mvn -B -DskipTests clean package"
 
               }
@@ -51,14 +50,14 @@ pipeline {
                     
                       steps {
                             rtserver {
-                                    id: "ARTIFACTORY_SERVER",
+                                    id: "ARTIFACTORY",
                                     url: "http://34.221.84.5:8081/artifactory",
                                     credentialsId: "Devops"
                                     
                                   }
                              rtMavenDeployer {
                                      id: "MAVEN_DEPLOYER",
-                                     server_id: "ARTIFACTORY_SERVER",
+                                     server_id: "ARTIFACTORY",
                                      releaseRepo: "libs-release-repo",
                                      snapshotRepo: "libs-snapshot-repo"
                                  }
