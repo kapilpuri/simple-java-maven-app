@@ -17,8 +17,7 @@ pipeline {
 
     
 
-    stages {
-              
+    stages {              
                
         stage('BUILD') {
 
@@ -49,44 +48,44 @@ pipeline {
                     stage ('Artifactory configuration')   {
                     
                       steps {
-                            rtserver {
+                            rtserver (
                                     id: "ARTIFACTORY",
                                     url: "http://34.221.84.5:8081/artifactory",
                                     credentialsId: "Devops"
                                     
-                                  }
-                             rtMavenDeployer {
+                                  )
+                             rtMavenDeployer (
                                      id: "MAVEN_DEPLOYER",
                                      server_id: "ARTIFACTORY",
                                      releaseRepo: "libs-release-repo",
                                      snapshotRepo: "libs-snapshot-repo"
-                                 }
+                                 )
                                  
-                              rtMavenResolver {
+                              rtMavenResolver (
                                       id: "MAVEN_RESOLVER",
                                       server_id: "ARTIFACTORY",
                                       releaseRepo: "libs-release",
                                       snapshotRepo: "libs-snapshot"
                          
-                                 }
+                                 )
                          }
                          }
                 stage ('EXEC Maven') {
                         steps {
-                                rtMavenRun{
+                                rtMavenRun(
                                     tool:'maven-3.6.0',
                                     pom: 'pom.xml',
                                     deployerID: 'MAVEN_DEPLOYER',
                                     resolverID: 'MAVEN_RESOLVER'
-                              }
+                              )
                               }
                               }
                               
                  stage ('Publish build info') {
                           steps {
-                              rtPublishBuildInfo {
+                              rtPublishBuildInfo (
                                     serverId: "ARTIFACTORY_SERVER"
-                                   }
+                                   )
                                  }
                               }
                                     
