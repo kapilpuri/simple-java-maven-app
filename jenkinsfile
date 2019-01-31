@@ -30,7 +30,7 @@ pipeline {
           stage('Test') {
               steps {
                     sh "mvn test"
-                    }
+                     }
                  post {
                       always {
                             junit 'target/surefire-reports/*.xml'
@@ -73,7 +73,7 @@ pipeline {
                 stage ('EXEC Maven') {
                         steps {
                                 rtMavenRun(
-                                    tool:'maven-3.6.0',
+                                    tool: 'maven-3.6.0',
                                     pom: 'pom.xml',
                                     goals: 'clean install',
                                     deployerId: "MAVEN_DEPLOYER",
