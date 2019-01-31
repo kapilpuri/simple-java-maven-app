@@ -56,14 +56,14 @@ pipeline {
                                   )
                              rtMavenDeployer (
                                      id: "MAVEN_DEPLOYER",
-                                     server_id: "ARTIFACTORY",
+                                     server_Id: "ARTIFACTORY",
                                      releaseRepo: "libs-release-repo",
                                      snapshotRepo: "libs-snapshot-repo"
                                  )
                                  
                               rtMavenResolver (
                                       id: "MAVEN_RESOLVER",
-                                      server_id: "ARTIFACTORY",
+                                      server_Id: "ARTIFACTORY",
                                       releaseRepo: "libs-release",
                                       snapshotRepo: "libs-snapshot"
                          
@@ -75,8 +75,8 @@ pipeline {
                                 rtMavenRun(
                                     tool:'maven-3.6.0',
                                     pom: 'pom.xml',
-                                    deployerID: 'MAVEN_DEPLOYER',
-                                    resolverID: 'MAVEN_RESOLVER'
+                                    deployerId: 'MAVEN_DEPLOYER',
+                                    resolverId: 'MAVEN_RESOLVER'
                               )
                               }
                               }
