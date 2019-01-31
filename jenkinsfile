@@ -42,7 +42,7 @@ pipeline {
                       steps {
                            // sh '.jenkins/scripts/deliver.sh'
                           // sh 'java -jar target/my-app-1.0-SNAPSHOT.jar'
-                          sh 'scp -o StrictHostKeyChecking=no -i /tmp/MARS_POC.pem /home/centos/simple-java-maven-app/target/my-app-1.0-SNAPSHOT.jar centos@34.216.127.228:/home/centos'
+                          sh 'scp -o StrictHostKeyChecking=no -i /tmp/MARS_POC.pem target/my-app-1.0-SNAPSHOT.jar centos@34.216.127.228:/home/centos'
                            }
                         }
                        
