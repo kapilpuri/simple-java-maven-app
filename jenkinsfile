@@ -42,7 +42,7 @@ pipeline {
                       steps {
                            // sh '.jenkins/scripts/deliver.sh'
                           // sh 'java -jar target/my-app-1.0-SNAPSHOT.jar'
-                          sh 'scp -i /tmp/MARS_POC.ppk target /my-app-1.0-SNAPSHOT.jar centos:34.216.127.228:/home/centos'
+                          sh 'scp -i /tmp/MARS_POC.ppk target /my-app-1.0-SNAPSHOT.jar centos@34.216.127.228:/home/centos'
                            }
                         }
                        
