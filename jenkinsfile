@@ -51,7 +51,7 @@ pipeline {
                     
                       steps {
                             rtserver {
-                                    id: "Artifactory Server",
+                                    id: "ARTIFACTORY_SERVER",
                                     url: "http://34.221.84.5:8081/artifactory",
                                     credentialsID: "Devops"
                                     
@@ -86,7 +86,7 @@ pipeline {
                  stage ('Publish build info') {
                           steps {
                               rtPublishBuildInfo {
-                                    serverId: "ARTIFACTORY SERVER"
+                                    serverId: "ARTIFACTORY_SERVER"
                                    }
                                  }
                               }
