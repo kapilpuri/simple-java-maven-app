@@ -56,14 +56,14 @@ pipeline {
                                   )
                              rtMavenDeployer (
                                      id: "MAVEN_DEPLOYER",
-                                     server_Id: "ARTIFACTORY",
+                                     serverId: "ARTIFACTORY",
                                      releaseRepo: "libs-release-repo",
                                      snapshotRepo: "libs-snapshot-repo"
                                  )
                                  
                               rtMavenResolver (
                                       id: "MAVEN_RESOLVER",
-                                      server_Id: "ARTIFACTORY",
+                                      serverId: "ARTIFACTORY",
                                       releaseRepo: "libs-release",
                                       snapshotRepo: "libs-snapshot"
                          
