@@ -1,4 +1,5 @@
 
+
 pipeline {
 
   agent any
@@ -38,6 +39,61 @@ pipeline {
                             }
                            }
                          }
+                  stage ('clone')  {
+                  
+                    steps {
+                        git branch: 'master', url: ""
+                        
+                        }
+                       }
+                       
+                    stage ('Artifactory configuration')   {
+                    
+                      steps {
+                            rtserver {
+                                    id: "Artifactory Server",
+                                    url: "http://34.221.84.5:8081/artifactory",
+                                    credentialsID: "Devops"
+                                    
+                                  }
+                             rtMavenDeployer {
+                                     id: "MAVEN_DEPLOYER",
+                                     server_id: "ARTIFACTORY_SERVER",
+                                     releaseRepo: "libs-release-repo",
+                                     snapshotRepo: "libs-snapshot-repo"
+                                 }
+                                 
+                              rtMavenResolver {
+                                      id: "MAVEN_RESOLVER",
+                                      server_id: "ARTIFACTORY_SERVER",
+                                      releaseRepo: "libs-release",
+                                      snapshotRepo: "libs-snapshot"
+                         
+                                 }
+                         }
+                         }
+                stage ('EXEC Maven') {
+                        steps {
+                                rtMavenRun{
+                                    tool:'maven-3.6.0',
+                                    pom: 'pom.xml',
+                                    deployerID: 'MAVEN_DEPLOYER',
+                                    resolverID: 'MAVEN_RESOLVER'
+                              }
+                              }
+                              }
+                              
+                 stage ('Publish build info') {
+                          steps {
+                              rtPublishBuildInfo {
+                                    serverId: "ARTIFACTORY SERVER"
+                                   }
+                                 }
+                              }
+                                    
+                                
+                
+                         
                stage('Deploy') {
                       steps {
                            // sh '.jenkins/scripts/deliver.sh'
